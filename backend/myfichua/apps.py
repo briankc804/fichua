@@ -6,5 +6,5 @@ class MyfichuaConfig(AppConfig):
     name = 'myfichua'
     
     
-    def ready(self):
-        import myfichua.signals
+    # def ready(self):
+    #     import myfichua.signals

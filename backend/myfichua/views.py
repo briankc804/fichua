@@ -1,16 +1,18 @@
 from django.shortcuts import render,redirect 
-from .forms import UserUpdateForm,ProfileUpdateForm
+# from .forms import UserUpdateForm,ProfileUpdateForm
 from .models import Profile
-from rest_framework import APIView
+# from rest_framework import APIView
 from django.contrib import messages
 from .serializers import ProfileSerializer
 from rest_framework import generics,status
-
+from django.contrib.auth import get_user_model
+User = get_user_model()
 
 class Profile(generics.RetrieveUpdateDestroyAPIView):
     model = Profile
     serializer_class = ProfileSerializer
     def get_object(self):
+        user = User.objects.get(id=self.request.user)
         
         return self.request.user
     
